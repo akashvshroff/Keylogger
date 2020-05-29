@@ -58,7 +58,7 @@ def generate_sentence():
         elif key == Key.caps_lock:
             swap_case = 0 if swap_case else 1
         if str(key).find("Key") == -1:
-            if key.startswith(r'\x'):
+            if str(key).startswith(r'\x'):
                 continue
             elif str(key).isalpha:
                 if swap_case:
